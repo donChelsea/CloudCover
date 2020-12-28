@@ -10,8 +10,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        WeatherService().fetchCurrentWeather("11003")
-        WeatherService().fetchForecast("11003", 1)
-
     }
 }

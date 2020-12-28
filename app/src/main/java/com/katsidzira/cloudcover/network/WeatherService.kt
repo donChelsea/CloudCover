@@ -1,6 +1,7 @@
 package com.katsidzira.cloudcover.network
 
 import android.util.Log
+import com.katsidzira.cloudcover.BuildConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +31,10 @@ class WeatherService {
                 call: Call<WeatherResponse>,
                 response: Response<WeatherResponse>
             ) {
-                Log.d("WeatherService", "forecast days: ${response.body()?.forecast?.forecastDay?.size}")
+                Log.d(
+                    "WeatherService",
+                    "forecast days: ${response.body()?.forecast?.forecastDay?.size}"
+                )
             }
 
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
@@ -42,7 +46,7 @@ class WeatherService {
     companion object {
         private const val BASE_URL = "https://api.weatherapi.com/v1/"
 
-        private val key = "f47000bc7cb04a32958205217202812"
+        private const val key = "f47000bc7cb04a32958205217202812"
 
         private val weatherService = Retrofit.Builder()
             .baseUrl(BASE_URL)
