@@ -16,5 +16,5 @@ interface WeatherApi {
         @Query("key") key: String,
         @Query("q") zip: String,
         @Query("days") days: Int
-    ): Call<WeatherResponse>
+    ): Call<ForecastResponse>
 }
