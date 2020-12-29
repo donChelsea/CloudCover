@@ -1,18 +1,15 @@
 package com.katsidzira.cloudcover.network
 
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class WeatherService {
 
-    fun fetchCurrentWeather(zip: String): Call<WeatherResponse> {
+    suspend fun fetchCurrentWeather(zip: String): WeatherResponse {
         return weatherService.getCurrentWeather(key, zip)
     }
 
-    fun fetchForecast(zip: String, days: Int): Call<ForecastResponse> {
+    suspend fun fetchForecast(zip: String, days: Int): ForecastResponse {
         return weatherService.getForecast(key, zip, days)
     }
 

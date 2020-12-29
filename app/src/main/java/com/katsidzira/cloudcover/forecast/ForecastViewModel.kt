@@ -1,36 +1,22 @@
 package com.katsidzira.cloudcover.forecast
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.katsidzira.cloudcover.network.ForecastResponse
 import com.katsidzira.cloudcover.network.WeatherService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.launch
 
-class ForecastViewModel: ViewModel() {
-    private val _weatherData by lazy { MutableLiveData<ForecastResponse>() }
-    val weatherData: LiveData<ForecastResponse> = _weatherData
+class ForecastViewModel : ViewModel() {
+    private val _forecastData by lazy { MutableLiveData<ForecastResponse>() }
+    val forecastData: LiveData<ForecastResponse> = _forecastData
 
     private val weatherService = WeatherService()
 
     fun getForecast(zip: String, days: Int) {
-        weatherService.fetchForecast(zip, days).enqueue(object : Callback<ForecastResponse> {
-            override fun onResponse(
-                call: Call<ForecastResponse>,
-                response: Response<ForecastResponse>
-            ) {
-                Log.d(
-                    "WeatherService",
-                    "forecast days: ${response.body()?.forecast?.forecastDay?.size}"
-                )
-                _weatherData.value = response.body()
-            }
-
-            override fun onFailure(call: Call<ForecastResponse>, t: Throwable) {
-                Log.d("WeatherService", "${t.message}")
-            }
-        })
-}}
+        viewModelScope.launch {
+            _forecastData.value = weatherService.fetchForecast(zip, days)
+        }
+    }
+}

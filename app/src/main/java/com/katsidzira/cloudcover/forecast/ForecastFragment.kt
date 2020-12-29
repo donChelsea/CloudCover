@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.katsidzira.cloudcover.R
 import com.katsidzira.cloudcover.databinding.FragmentForecastBinding
 
 class ForecastFragment : Fragment() {
@@ -26,7 +25,7 @@ class ForecastFragment : Fragment() {
 
         model.getForecast("90210", 3)
 
-        model.weatherData.observe(viewLifecycleOwner, Observer { weather ->
+        model.forecastData.observe(viewLifecycleOwner, Observer { weather ->
             Log.d("ForecastFragment", "forecast days: ${weather.forecast.forecastDay.size}")
         })
 
