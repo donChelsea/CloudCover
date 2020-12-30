@@ -2,4 +2,7 @@
     <string name="app_name">CloudCover</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="zip_code">Zip code</string>
+    <string name="date">Date</string>
+    <string name="location">Location</string>
 </resources>

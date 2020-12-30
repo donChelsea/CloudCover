@@ -11,5 +11,8 @@ data class Current(
     @SerializedName("wind_mph")
     val windSpeed: String,
 
-    val humidity: String
+    val humidity: String,
+
+    @SerializedName("feelslike_f")
+    val feelsLike: String
 )
