@@ -8,12 +8,12 @@ import com.katsidzira.cloudcover.network.WeatherResponse
 import com.katsidzira.cloudcover.network.WeatherService
 import kotlinx.coroutines.launch
 
-class CurrentViewModel: ViewModel() {
+class CurrentViewModel : ViewModel() {
 
     private val _weatherData by lazy { MutableLiveData<WeatherResponse>() }
     val weatherData: LiveData<WeatherResponse> = _weatherData
 
-        private val _zipCode by lazy { MutableLiveData<String>() }
+    private val _zipCode by lazy { MutableLiveData<String>() }
     val zipCode: LiveData<String> = _zipCode
 
     private val weatherService = WeatherService()

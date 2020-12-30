@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="forecastDay"
+            type="com.katsidzira.cloudcover.models.ForecastDay" />
+    </data>
+
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="500dp">
@@ -18,7 +24,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/iv_forecast_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +36,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Monday"
-                    app:layout_constraintTop_toBottomOf="@id/imageView2"/>
+                    android:text="@{forecastDay.day.weatherCondition.text}"
+                    tools:text="Monday"
+                    android:gravity="center_horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/iv_forecast_icon"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

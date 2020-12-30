@@ -1,5 +1,6 @@
 package com.katsidzira.cloudcover.current
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +12,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.katsidzira.cloudcover.R
 import com.katsidzira.cloudcover.databinding.FragmentCurrentBinding
 import com.squareup.picasso.Picasso
 
@@ -40,6 +42,11 @@ class CurrentFragment : Fragment() {
 
         model.zipCode.observe(viewLifecycleOwner, Observer { zip ->
             model.getCurrentWeather(zip)
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return@Observer
+            with (sharedPref.edit()) {
+                putString("ZIPCODE", zip)
+                apply()
+            }
         })
 
         model.weatherData.observe(viewLifecycleOwner, Observer { weather ->
@@ -53,6 +60,7 @@ class CurrentFragment : Fragment() {
             Log.d("CurrentFragment", weather.location.name)
             Log.d("CurrentFragment", weather.current.windSpeed)
         })
+
     }
 
 }
